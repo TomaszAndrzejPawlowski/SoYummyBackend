@@ -20,7 +20,7 @@ const addToFav = async (req, res, next) => {
     if (result === 404) {
       return notFoundResponse(res, "No recipe found by provided id");
     }
-    return okResponse(res, "Recipe added to favorites");
+    return okResponse(res, {message: "Recipe added to favorites", id: req.body.id});
   } catch (err) {
     console.log(err.message);
     next(err);
@@ -53,7 +53,7 @@ const removeFromFav = async (req, res, next) => {
     if (result === 404) {
       return notFoundResponse(res, "No recipe found by provided id");
     }
-    return okResponse(res, "Recipe removed from favorites");
+    return okResponse(res, {message: "Recipe removed from favorites", id: req.body.id});
   } catch (err) {
     console.log(err.message);
     next(err);

@@ -76,7 +76,7 @@ const deleteOwnRecipe = async (req, res, next) => {
         "User is not a creator of provided recipe"
       );
     }
-    return okResponse(res, "Recipe deleted");
+    return okResponse(res, {message: "Recipe deleted", id: req.body.id});
   } catch (err) {
     console.log(err.message);
     next(err);

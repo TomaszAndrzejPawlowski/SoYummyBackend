@@ -79,7 +79,7 @@ const editUser = async (req, res, next) => {
         width: 44,
         crop: "scale",
         radius: "max",
-        quality: "eco",
+        quality: "auto:eco",
         fetch_format: "auto",
       });
       req.body.avatar = uploadResult.secure_url;

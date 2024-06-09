@@ -19,7 +19,7 @@ const removeFromShoppingList = async (userInput, userId, userShoppingList) => {
   try {
     const insideShoppingList = userShoppingList.some(
       (ingredient) =>
-        ingredient.id === userInput.id &&
+        ingredient._id === userInput.id &&
         ingredient.measure === userInput.measure
     );
     if (!insideShoppingList) {
@@ -29,7 +29,7 @@ const removeFromShoppingList = async (userInput, userId, userShoppingList) => {
       { _id: userId },
       {
         $pull: {
-          shoppingList: { id: userInput.id, measure: userInput.measure },
+          shoppingList: { _id: userInput.id, measure: userInput.measure },
         },
       }
     );
@@ -42,21 +42,7 @@ const getUserShoppingList = async (userShoppingList) => {
     if (!userShoppingList.length) {
       return 404;
     }
-    const shoppingList = await Ingredient.find({
-      _id: { $in: userShoppingList },
-    });
-    const listToDisplay = userShoppingList.map((item) => {
-      const ingredientItem = shoppingList.find(
-        (ingredient) => ingredient._id === item.id
-      );
-      return {
-        id: item.id,
-        ttl: ingredientItem.ttl,
-        thb: ingredientItem.thb,
-        measure: item.measure,
-      };
-    });
-    return listToDisplay;
+    return userShoppingList;
   } catch (err) {
     console.log(err.message);
   }

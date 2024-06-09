@@ -13,7 +13,7 @@ const addToShoppingList = async (req, res, next) => {
     if (result === 404) {
       return notFoundResponse(res, "No ingredient found by provided id");
     }
-    return okResponse(res, "Added to shopping list");
+    return okResponse(res, {message: "Added to shopping list", ingredient: req.body});
   } catch (err) {
     console.log(err.message);
     next(err);
@@ -29,7 +29,7 @@ const removeFromShoppingList = async (req, res, next) => {
     if (result === 404) {
       return notFoundResponse(res, "No ingredients with provided data found");
     }
-    return okResponse(res, "Removed from shopping list");
+    return okResponse(res, {message: "Removed from shopping list", ingredient: req.body});
   } catch (err) {
     console.log(err.message);
     next(err);
@@ -40,7 +40,7 @@ const getUserShoppingList = async (req, res, next) => {
     const result = await shoppingListService.getUserShoppingList(
       req.user.shoppingList
     );
-    console.log(result);
+    // console.log(result);
     if (result === 404) {
       return notFoundResponse(
         res,
