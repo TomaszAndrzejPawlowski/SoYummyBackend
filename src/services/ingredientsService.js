@@ -16,10 +16,8 @@ const getRecipesByIngredients = async (userInput) => {
     });
     const recipesList = await Recipe.find();
     const recipesWithIngredient = recipesList.filter((recipe) =>
-      recipe.ingredients.some(
-        (ingredient) => ingredient.id === ingredientFromInput.id
-      )
-    );
+      recipe.ingredients.some((ingredient) => ingredient.id.toString() === ingredientFromInput._id.toString())
+        );
     return recipesWithIngredient;
   } catch (err) {
     console.log(err.message);

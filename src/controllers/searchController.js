@@ -6,8 +6,8 @@ const searchService = require("../services/searchService");
 
 const searchByTitle = async (req, res, next) => {
   try {
-    const result = await searchService.searchByTitle(req.body.input);
-    if (result) {
+    const result = await searchService.searchByTitle(req.query.title);
+    if (result.length) {
       return okResponse(res, result);
     }
     return notFoundResponse(res, "No recipes found");

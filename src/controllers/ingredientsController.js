@@ -20,8 +20,9 @@ const getIngredientsList = async (req, res, next) => {
 const getRecipesByIngredients = async (req, res, next) => {
   try {
     const result = await ingredientsService.getRecipesByIngredients(
-      req.body.ingredient
-    );
+      req.query.ingredient
+      );
+    console.log(result)
     if (result) {
       return okResponse(res, result);
     }
