@@ -1,6 +1,6 @@
 const {
   badReqResponse,
-} = require("../../../goit-nodejs-hw-02/routes/controllers/common");
+} = require("../middlewares/commonResponsesMiddleware");
 const {
   notFoundResponse,
   okResponse,

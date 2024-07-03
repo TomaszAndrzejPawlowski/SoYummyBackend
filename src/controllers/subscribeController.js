@@ -2,7 +2,7 @@ const subscribeService = require("../services/subscribeService");
 const sendEmail = require("../middlewares/nwesletterMiddleware");
 const {
   badReqResponse,
-} = require("../../../goit-nodejs-hw-02/routes/controllers/common");
+} = require("../middlewares/commonResponsesMiddleware");
 const { okResponse } = require("../middlewares/commonResponsesMiddleware");
 const {
   validateEmailForNewsletter,
