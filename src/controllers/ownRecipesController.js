@@ -1,7 +1,4 @@
 const {
-  badReqResponse,
-} = require("../middlewares/commonResponsesMiddleware");
-const {
   dataCreatedResponse,
   dataConflictResponse,
   okResponse,
@@ -47,7 +44,7 @@ const addOwnRecipe = async (req, res, next) => {
     if (result && result.status === 409) {
       return dataConflictResponse(res, result.message);
     }
-    return badReqResponse(res, "Wrong input");
+    return badRequestResponse(res, "Wrong input");
   } catch (err) {
     if (err.isJoi === true) {
       const message =
@@ -68,7 +65,7 @@ const deleteOwnRecipe = async (req, res, next) => {
       req.user.addedRecipes
     );
     if (result === 400) {
-      return badReqResponse(res, "No recipe found with provided id.");
+      return badRequestResponse(res, "No recipe found with provided id.");
     }
     if (result === 401) {
       return unauthorizedResponse(

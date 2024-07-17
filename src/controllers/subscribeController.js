@@ -1,9 +1,6 @@
 const subscribeService = require("../services/subscribeService");
 const sendEmail = require("../middlewares/nwesletterMiddleware");
-const {
-  badReqResponse,
-} = require("../middlewares/commonResponsesMiddleware");
-const { okResponse } = require("../middlewares/commonResponsesMiddleware");
+const { badRequestResponse, okResponse } = require("../middlewares/commonResponsesMiddleware");
 const {
   validateEmailForNewsletter,
 } = require("../validators/newsletterValidation");
@@ -17,7 +14,7 @@ const sendNewsletter = async (req, res, next) => {
       req.body.email
     );
     if (result === 400) {
-      return badReqResponse(res, "User is already subscribed.");
+      return badRequestResponse(res, "User is already subscribed.");
     }
     if (result && result !== 400) {
       sendEmail(req.body.email, result.name);

@@ -1,7 +1,5 @@
 const {
-  badReqResponse,
-} = require("../middlewares/commonResponsesMiddleware");
-const {
+  badRequestResponse,
   notFoundResponse,
   okResponse,
 } = require("../middlewares/commonResponsesMiddleware");
@@ -15,7 +13,7 @@ const addToFav = async (req, res, next) => {
       req.user.favRecipes
     );
     if (result === 400) {
-      return badReqResponse(res, "Recipe already added to favorites");
+      return badRequestResponse(res, "Recipe already added to favorites");
     }
     if (result === 404) {
       return notFoundResponse(res, "No recipe found by provided id");
@@ -48,7 +46,7 @@ const removeFromFav = async (req, res, next) => {
       req.user.favRecipes
     );
     if (result === 400) {
-      return badReqResponse(res, "Recipe is not in favorites");
+      return badRequestResponse(res, "Recipe is not in favorites");
     }
     if (result === 404) {
       return notFoundResponse(res, "No recipe found by provided id");
